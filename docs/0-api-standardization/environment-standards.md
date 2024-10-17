@@ -13,16 +13,17 @@
 ## 3. 技術スタック
 以下のソフトウェアを使用する。
 
-| ID  | ソフトウェア             | バージョン | 互換性の概要                                                                                   |
-| --- | ------------------------ | ---------- | ---------------------------------------------------------------------------------------------- |
-| 1   | **Apache Kafka**         | 3.5.1      | Zookeeper 3.8.xと互換性があり、Spring Boot、Spring Kafkaとも互換性がある。                     |
-| 2   | **Zookeeper**            | 3.8.1      | Kafka 3.5.1と互換性があり、Kafkaの動作に必須である。                                           |
-| 3   | **Java Development Kit** | 21         | Spring Boot 3.2.x、Kafka 3.5.x、MyBatis 3.5.xと互換性がある。                                  |
-| 4   | **Spring Boot**          | 3.2.x      | Kafka 3.5.x、Spring Kafka 3.1.x、Java 21と互換性がある。                                       |
-| 5   | **Spring Kafka**         | 3.1.x      | Spring Boot 3.2.x、Kafka 3.5.xと互換性がある。                                                 |
-| 6   | **MyBatis**              | 3.5.7      | Oracle Database 21cと互換性があり、Java 21とも動作する。                                       |
-| 7   | **Gradle**               | 8.2        | すべての依存関係のビルドと管理が可能であり、Java 21とも互換性がある。                          |
-| 8   | **Oracle Database**      | 21c        | JDBCドライバを使用してJavaアプリケーションと接続でき、Java 21、MyBatis 3.5.7とも互換性がある。 |
+| ID  | ソフトウェア        | バージョン     |
+| --- | ------------------- | -------------- |
+| 1   | **Java**            | 8              |
+| 2   | **Apache Kafka**    | 2.8.0          |
+| 3   | **Spring Boot**     | 2.3.12.RELEASE |
+| 4   | **Spring Kafka**    | 2.6.10         |
+| 5   | **MyBatis**         | 3.5.7          |
+| 6   | **Gradle**          | 6.8.3          |
+| 7   | **Oracle Database** | 19c            |
+| 8   | **Debezium**        | 1.6.0.Final    |
+
 
 ## 4. インストール手順
 
