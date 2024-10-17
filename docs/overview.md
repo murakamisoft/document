@@ -18,6 +18,7 @@ project-root/
 │  │     ├─ camunda-kafka-integration.md # Camunda、Kafka連携
 │  │     ├─ documentation-rules.md      # ドキュメント化ルール
 │  │     ├─ testing-automation.md        # テスト自動化
+│  │     ├─ static-analysis-tools.md     # 静的解析ツール
 │  │     └─ ci-cd-implementation.md      # CI/CD導入
 │  │
 │  ├─ 1-architecture/         # アーキテクチャ関連のドキュメント
@@ -42,8 +43,7 @@ project-root/
 │        ├─ getting-started.md # はじめに
 │        └─ user-guide.md      # ユーザーガイド
 │
-├─ README.md                  # プロジェクトの概要
-└─ LICENSE                    # ライセンス情報
+└─ README.md                  # プロジェクトの概要
 ```
 
 ### フォルダの説明

@@ -1,65 +1,95 @@
 # 開発環境構築手順書
 
-## 目次
-[[_TOC_]]
+## 概要
 
-## 1. 概要
-本手順書では、Windows環境におけるtaskAPIの開発に必要なソフトウェアのインストールと設定手順について説明する。
+本書では、taskApiを開発するための環境構築手順を示します。構築に必要なソフトウェアのインストール手順および設定方法について記述しています。
 
-## 2. 前提条件
+## 前提条件
+
 - OS: Windows
 - インターネット接続が必要。
 
-## 3. 技術スタック
-以下のソフトウェアを使用する。
+## 推奨ツール
 
-| ID  | ソフトウェア        | バージョン     |
-| --- | ------------------- | -------------- |
-| 1   | **Java**            | 8              |
-| 2   | **Apache Kafka**    | 2.8.0          |
-| 3   | **Spring Boot**     | 2.3.12.RELEASE |
-| 4   | **Spring Kafka**    | 2.6.10         |
-| 5   | **MyBatis**         | 3.5.7          |
-| 6   | **Gradle**          | 6.8.3          |
-| 7   | **Oracle Database** | 19c            |
-| 8   | **Debezium**        | 1.6.0.Final    |
+個人的に使用しているものがあれば、そちらでも可能です。
 
+- IDE: [Visual Studio Code (VSCode)](https://code.visualstudio.com/download)
+- SQLツール: [A5M2](https://a5m2.mmatsubara.com/)
 
-## 4. インストール手順
+## 必要なソフトウェア
 
-### 4.1. Apache Kafkaのインストール
-1. [Apache Kafkaのダウンロードページ](https://kafka.apache.org/downloads)にアクセスする。
-2. 最新安定版のKafkaをダウンロードする。
-3. ダウンロードしたZIPファイルを解凍し、任意のフォルダに配置する。
+以下のソフトウェアが必要です。
 
-### 4.2. Zookeeperのインストール
-1. [Apache Zookeeperのダウンロードページ](https://zookeeper.apache.org/releases.html)にアクセスする。
-2. 最新安定版のZookeeperをダウンロードする。
-3. ダウンロードしたZIPファイルを解凍し、任意のフォルダに配置する。
+| ID  | ソフトウェア        | バージョン |
+| --- | ------------------- | ---------- |
+| 1   | **Java**            | 8          |
+| 2   | **Apache Kafka**    | 3.7.1      |
+| 3   | **Oracle Database** | 19c        |
 
-### 4.3. Java Development Kitのインストール
-1. [OracleのJDKダウンロードページ](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)にアクセスする。
-2. JDK 21をダウンロードし、インストールする。
+## 1. Java JDK 8のインストール
 
-### 4.4. Gradleのインストール
-1. [Gradleのダウンロードページ](https://gradle.org/install/)にアクセスする。
-2. 最新版のGradleをダウンロードし、インストールする。
+1. [Oracle JDKのダウンロードページ](https://www.oracle.com/jp/java/technologies/downloads/#java8-windows)からJDK 8をダウンロードし、指示に従ってインストールを行います。
+2. 環境変数`JAVA_HOME`をJDKのインストールパスに設定します。
+   - 例: `C:\Program Files\Java\jdk1.8.0_xxx`
+3. `PATH`環境変数に`%JAVA_HOME%\bin`を追加します。
 
-### 4.5. Oracle Databaseのインストール
-1. [Oracle Databaseのダウンロードページ](https://www.oracle.com/database/technologies/)にアクセスする。
-2. Oracle Database 21cをダウンロードし、インストールする。
+## 2. Apache Kafkaのインストール
 
-## 5. 開発ツール
-- **Visual Studio Code**を開発ツールとして使用する。
-- VSCodeをインストールし、必要な拡張機能（Java Extension PackやSpring Boot Extension Packなど）を追加する。
+1. [Apache Kafkaのダウンロードページ](https://kafka.apache.org/downloads)からKafka 2.13-3.7.1をダウンロードし、適当なディレクトリに解凍します。
+2. 環境変数`KAFKA_HOME`をKafkaの解凍パスに設定します。
+   - 例: `C:\kafka_2.13-3.7.1`
+3. `PATH`環境変数に`%KAFKA_HOME%\bin\windows`を追加します。
 
-## 6. 確認手順
-すべてのソフトウェアが正しくインストールされたことを確認するために、以下のコマンドを実行する。
+## 3. Oracle Databaseのインストール
 
-```bash
-kafka-topics --version
-java -version
-gradle -v
-```
+1. [Oracle Databaseのダウンロードページ](https://www.oracle.com/jp/database/technologies/oracle-database-software-downloads.html)からOracle Database 19cをダウンロードします。
+2. インストール手順に従ってOracle Databaseをインストールします。
 
-以上。
+## 4. Kafkaのセットアップ
+
+1. **Zookeeperの起動**
+   - コマンドプロンプトを開き、以下のコマンドを実行します。
+   ```bash
+   zookeeper-server-start.bat %KAFKA_HOME%\config\zookeeper.properties
+   ```
+
+2. **Kafkaの起動**
+   - 別のコマンドプロンプトを開き、以下のコマンドを実行します。
+   ```bash
+   kafka-server-start.bat %KAFKA_HOME%\config\server.properties
+   ```
+
+## 5. Kafkaの動作確認
+
+1. **トピックの作成**
+   - 新しいコマンドプロンプトを開き、以下のコマンドを実行してトピックを作成します。
+   ```bash
+   kafka-topics.bat --create --topic test-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+   ```
+
+2. **メッセージの送信**
+   - 同じコマンドプロンプトで、以下のコマンドを実行してメッセージをトピックに送信します。
+   ```bash
+   kafka-console-producer.bat --topic test-topic --bootstrap-server localhost:9092
+   ```
+   - プロンプトが表示されたら、送信したいメッセージを入力し、Enterキーを押します。例えば「Hello Kafka」と入力して送信します。
+
+3. **メッセージの確認**
+   - 別のコマンドプロンプトを開き、以下のコマンドを実行してトピックからメッセージを読み取ります。
+   ```bash
+   kafka-console-consumer.bat --topic test-topic --bootstrap-server localhost:9092 --from-beginning
+   ```
+
+## 6. プロジェクトのビルドと実行
+
+1. プロジェクトをビルドするために、ターミナルで以下のコマンドを実行します。
+   ```bash
+   gradle build
+   ```
+
+2. プロジェクトを実行するために、以下のコマンドを実行します。
+   ```bash
+   gradle run
+   ```
+
+以上
