@@ -2,7 +2,7 @@ SpotBugs
 Checkstyle
 JaCoCo
 GradleのProject Report
-
+sonarlint
 
 bpm-apis
   com.github.spotbugs 5.0.14

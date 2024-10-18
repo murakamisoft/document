@@ -1,5 +1,8 @@
 # 静的解析ツールによる品質向上ガイド
 
+## 目次
+[[_TOC_]]
+
 ## 前提条件
 - **OS**: Windows
 - **IDE**: Visual Studio Code (VSCode)
@@ -13,6 +16,7 @@
 2. [Checkstyle](https://checkstyle.sourceforge.io/)
 3. [JaCoCo](https://www.jacoco.org/jacoco/)
 4. Gradleの**Project Report**
+5. [SonarLint](https://www.sonarlint.org/)
 
 ### 1. SpotBugsの導入
 SpotBugsは、Javaバイトコードを解析して潜在的なバグや問題を検出します。
@@ -133,3 +137,21 @@ GradleのProject Reportプラグインを使用して、プロジェクトの依
 
 #### 出力結果
 HTML形式でプロジェクト全体の依存関係やタスクリストが出力され、プロジェクトの構造を把握できます。
+
+---
+
+### 5. SonarLintの導入
+SonarLintは、IDE内でリアルタイムにコードを分析し、コードの品質を向上させるためのツールです。
+
+#### 設定手順
+1. **VSCodeにSonarLintをインストール**します。
+   - VSCodeを開き、拡張機能マーケットプレイスから「SonarLint」を検索し、インストールします。
+
+2. **SonarLintの設定**:
+   - インストール後、SonarLintの設定を行います。プロジェクト内で右クリックし、「SonarLint: Bind to SonarQube/SonarCloud」オプションを選択し、SonarQubeまたはSonarCloudのプロジェクトにバインドすることも可能です（必要に応じて）。
+
+3. **コード解析の実行**:
+   - コードファイルを開くと、SonarLintが自動的にコードを分析し、潜在的な問題点をリアルタイムで表示します。
+
+#### 出力結果
+SonarLintによる分析結果は、VSCode内で直接確認できます。問題の箇所には警告マークが表示され、詳細情報はサイドバーから確認可能です。
