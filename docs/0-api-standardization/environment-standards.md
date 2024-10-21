@@ -31,7 +31,7 @@
 
 ## 1. Java JDK 8のインストール
 
-1. [Oracle JDKのダウンロードページ](https://www.oracle.com/jp/java/technologies/downloads/#java8-windows)からJDK 8をダウンロードし、指示に従ってインストールを行います。
+1. [Oracle JDKのダウンロードページ](https://www.oracle.com/jp/java/technologies/downloads/#java8-windows)からJDK 8をダウンロードし、指示に従ってインストールを行います。（JDK8のインストールのためには、Oracleのアカウントを作成する必要がありそう。。）
 2. 環境変数`JAVA_HOME`をJDKのインストールパスに設定します。
    - 例: `C:\Program Files\Java\jdk1.8.0_xxx`
 3. `PATH`環境変数に`%JAVA_HOME%\bin`を追加します。
