@@ -31,21 +31,21 @@
 
 ## 1. Java JDK 8のインストール
 
-1. [Oracle JDKのダウンロードページ](https://www.oracle.com/jp/java/technologies/downloads/#java8-windows)からJDK 8をダウンロードし、指示に従ってインストールを行います。（JDK8のインストールのためには、Oracleのアカウントを作成する必要がありそう。。）
+1. 資材フォルダにアクセスし、インストールする。
 2. 環境変数`JAVA_HOME`をJDKのインストールパスに設定します。
    - 例: `C:\Program Files\Java\jdk1.8.0_xxx`
 3. `PATH`環境変数に`%JAVA_HOME%\bin`を追加します。
 
-## 2. Apache Kafkaのインストール
+## 2. Apache Kafkaのインストール（ローカルにインストールする場合）
 
-1. [Apache Kafkaのダウンロードページ](https://kafka.apache.org/downloads)からKafka 2.13-3.7.1をダウンロードし、適当なディレクトリに解凍します。
+1. 資材フォルダにアクセスし、インストールする。
 2. 環境変数`KAFKA_HOME`をKafkaの解凍パスに設定します。
    - 例: `C:\kafka_2.13-3.7.1`
 3. `PATH`環境変数に`%KAFKA_HOME%\bin\windows`を追加します。
 
-## 3. Oracle Databaseのインストール
+## 3. Oracle Databaseのインストール（ローカルにインストールする場合）
 
-1. [Oracle Databaseのダウンロードページ](https://www.oracle.com/jp/database/technologies/oracle-database-software-downloads.html)からOracle Database 19cをダウンロードします。
+1. 資材フォルダにアクセスし、インストールする。
 2. インストール手順に従ってOracle Databaseをインストールします。
 
 以上
