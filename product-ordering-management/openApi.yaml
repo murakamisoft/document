@@ -1,0 +1,128 @@
+openapi: 3.0.1
+info:
+  title: 注文取得API
+  version: 1.0.0
+servers:
+  - url: "https://api.example.com"
+paths:
+  /api/v1/order/{entrySheetNumber}:
+    get:
+      summary: 注文取得
+      operationId: getOrder
+      parameters:
+        - name: entrySheetNumber
+          in: path
+          description: 申込書番号
+          required: true
+          schema:
+            type: string
+            maxLength: 14
+        - name: page
+          in: query
+          description: ページ番号
+          required: true
+          schema:
+            type: string
+            maxLength: 4
+        - name: pageSize
+          in: query
+          description: １ページ当たりの表示件数
+          required: true
+          schema:
+            type: string
+            maxLength: 3
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  order:
+                    type: object
+                    properties:
+                      contractType:
+                        type: string
+                      sbbAgencyCode:
+                        type: string
+                      sbmShopCode:
+                        type: string
+                      entryDate:
+                        type: string
+                        format: date
+                      contractorNameSeiKana:
+                        type: string
+                      contractorNameMeiKana:
+                        type: string
+                      mysbUrlNotificationMethod:
+                        type: string
+                      mobilePhoneNumber:
+                        type: string
+                      mailAddress:
+                        type: string
+                      orderStatus:
+                        type: string
+                      idDocInfo:
+                        type: object
+                        properties:
+                          idDocRegistrationStatus:
+                            type: string
+                          idDocReviewNgCertType:
+                            type: string
+                          idDocReviewNgCertReason:
+                            type: string
+                          idDocReviewNgCertReasonAlt:
+                            type: string
+                          idDocReviewNgCertType2:
+                            type: string
+                          idDocReviewNgCert2Reason:
+                            type: string
+                          idDocReviewNgCert2ReasonAlt:
+                            type: string
+                          idDocReviewNgAdditionalCertType:
+                            type: string
+                          idDocReviewNgAdditionalCertReason:
+                            type: string
+                          idDocReviewNgSupportDocType:
+                            type: string
+                          idDocReviewNgSupportDocReason:
+                            type: string
+                          idDocReviewNgSupportDocReasonAlt:
+                            type: string
+                          idDocReviewNgSupportDocType2:
+                            type: string
+                          idDocReviewNgSupportDoc2Reason:
+                            type: string
+                          idDocReviewNgSupportDoc2ReasonAlt:
+                            type: string
+                          idDocReviewNgAdditionalSupportDocType:
+                            type: string
+                          idDocReviewNgAdditionalSupportDocReason:
+                            type: string
+                      orderItems:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            service:
+                              type: string
+                            business:
+                              type: string
+                            equipmentReceipt:
+                              type: string
+                  meta:
+                    type: object
+                    properties:
+                      page:
+                        type: string
+                      pageSize:
+                        type: string
+                      totalPages:
+                        type: integer
+                      totalItems:
+                        type: integer
+        "400":
+          description: リクエストエラー
+        "404":
+          description: 注文が見つかりません

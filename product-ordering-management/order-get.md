@@ -1,47 +1,67 @@
 # 注文取得API
 
-レスポンスのJSONを教えて。
-No12～27は、運転免許証、健康保険証＋補助書類、日本国パスポート＋補助書類、公共料金領収書、有効期限が切れています、画像が切れているため確認できませんでした。
-を使用して、値を考えて。
+## エンドポイント
+/api/v1/order/{entrySheetNumber}
+
+## リクエスト情報
+
+| **＃** | **論理名**               | **物理名**       | **必須** | **型** | **桁数** |
+| ------ | ------------------------ | ---------------- | -------- | ------ | -------- |
+| 1      | 申込書番号               | entrySheetNumber | 必須     | String | 14       |
+| 2      | ページ番号               | page             | 必須     | String | 4        |
+| 3      | １ページ当たりの表示件数 | pageSize         | 必須     | String | 3        |
 
 注文と注文明細が1:n
 注文と本人確認情報が1:1
 の関係。
 
-| **＃** | **分類**     | **論理名**                          | **物理名**                              |
-| ------ | ------------ | ----------------------------------- | --------------------------------------- |
-| 1      | 注文         | 契約タイプ                          | contractType                            |
-| 2      | 注文         | SBB代理店コード                     | sbbAgencyCode                           |
-| 3      | 注文         | SBM取次店コード                     | sbmShopCode                             |
-| 4      | 注文         | 申込日                              | entryDate                               |
-| 5      | 注文         | 契約者名のフリガナ（セイ）          | contractorNameSeiKana                   |
-| 6      | 注文         | 契約者名のフリガナ（メイ）          | contractorNameMeiKana                   |
-| 7      | 注文         | MySBのURL通知方法                   | mysbUrlNotificationMethod               |
-| 8      | 注文         | 携帯電話番号                        | mobilePhoneNumber                       |
-| 9      | 注文         | メールアドレス                      | mailAddress                             |
-| 10     | 注文         | 注文ステータス                      | orderStatus                             |
-| 11     | 本人確認情報 | 本人確認書類登録ステータス          | idDocRegistrationStatus                 | 未登録、登録済/未審査、登録済/審査OK、登録済/審査NG |
-| 12     | 本人確認情報 | 本確審査NG証明書種類                | idDocReviewNgCertType                   |
-| 13     | 本人確認情報 | 本確審査NG証明書不備理由            | idDocReviewNgCertReason                 |
-| 14     | 本人確認情報 | 本確審査NG証明書不備理由（予備）    | idDocReviewNgCertReasonAlt              |
-| 15     | 本人確認情報 | 本確審査NG証明書種類2               | idDocReviewNgCertType2                  |
-| 16     | 本人確認情報 | 本確審査NG証明書2不備理由           | idDocReviewNgCert2Reason                |
-| 17     | 本人確認情報 | 本確審査NG証明書2不備理由（予備）   | idDocReviewNgCert2ReasonAlt             |
-| 18     | 本人確認情報 | 本確審査NG追加証明書種類            | idDocReviewNgAdditionalCertType         |
-| 19     | 本人確認情報 | 本確審査NG追加証明書不備理由        | idDocReviewNgAdditionalCertReason       |
-| 20     | 本人確認情報 | 本確審査NG補助書類種類              | idDocReviewNgSupportDocType             |
-| 21     | 本人確認情報 | 本確審査NG補助書類不備理由          | idDocReviewNgSupportDocReason           |
-| 22     | 本人確認情報 | 本確審査NG補助書類不備理由（予備）  | idDocReviewNgSupportDocReasonAlt        |
-| 23     | 本人確認情報 | 本確審査NG補助書類種類2             | idDocReviewNgSupportDocType2            |
-| 24     | 本人確認情報 | 本確審査NG補助書類2不備理由         | idDocReviewNgSupportDoc2Reason          |
-| 25     | 本人確認情報 | 本確審査NG補助書類2不備理由（予備） | idDocReviewNgSupportDoc2ReasonAlt       |
-| 26     | 本人確認情報 | 本確審査NG追加補助書類種類          | idDocReviewNgAdditionalSupportDocType   |
-| 27     | 本人確認情報 | 本確審査NG追加補助書類不備理由      | idDocReviewNgAdditionalSupportDocReason |
-| 28     | 注文明細     | サービス                            | service                                 |
-| 29     | 注文明細     | 業務                                | business                                |
-| 30     | 注文明細     | 機器受取                            | equipmentReceipt                        |
+本人確認書類登録ステータスには、
+未登録、登録済/未審査、登録済/審査OK、登録済/審査NG
+が入る。
 
+## レスポンス情報
 
+こちらが修正後の表です。番号の部分を連番にし、カテゴリに「メタ情報」を追加しました。
+
+| **＃** | **分類**     | **論理名**                          | **物理名**                              | **説明** |
+| ------ | ------------ | ----------------------------------- | --------------------------------------- | -------- |
+| 1      | 注文         | 申込書番号                          | entrySheetNumber                        |          |
+| 2      | 注文         | 契約タイプ                          | contractType                            |          |
+| 3      | 注文         | SBB代理店コード                     | sbbAgencyCode                           |          |
+| 4      | 注文         | SBM取次店コード                     | sbmShopCode                             |          |
+| 5      | 注文         | 申込日                              | entryDate                               |          |
+| 6      | 注文         | 契約者名のフリガナ（セイ）          | contractorNameSeiKana                   |          |
+| 7      | 注文         | 契約者名のフリガナ（メイ）          | contractorNameMeiKana                   |          |
+| 8      | 注文         | MySBのURL通知方法                   | mysbUrlNotificationMethod               |          |
+| 9      | 注文         | 携帯電話番号                        | mobilePhoneNumber                       |          |
+| 10     | 注文         | メールアドレス                      | mailAddress                             |          |
+| 11     | 注文         | 注文ステータス                      | orderStatus                             |          |
+| 12     | 本人確認情報 | 本人確認書類登録ステータス          | idDocRegistrationStatus                 |          |
+| 13     | 本人確認情報 | 本確審査NG証明書種類                | idDocReviewNgCertType                   |          |
+| 14     | 本人確認情報 | 本確審査NG証明書不備理由            | idDocReviewNgCertReason                 |          |
+| 15     | 本人確認情報 | 本確審査NG証明書不備理由（予備）    | idDocReviewNgCertReasonAlt              |          |
+| 16     | 本人確認情報 | 本確審査NG証明書種類2               | idDocReviewNgCertType2                  |          |
+| 17     | 本人確認情報 | 本確審査NG証明書2不備理由           | idDocReviewNgCert2Reason                |          |
+| 18     | 本人確認情報 | 本確審査NG証明書2不備理由（予備）   | idDocReviewNgCert2ReasonAlt             |          |
+| 19     | 本人確認情報 | 本確審査NG追加証明書種類            | idDocReviewNgAdditionalCertType         |          |
+| 20     | 本人確認情報 | 本確審査NG追加証明書不備理由        | idDocReviewNgAdditionalCertReason       |          |
+| 21     | 本人確認情報 | 本確審査NG補助書類種類              | idDocReviewNgSupportDocType             |          |
+| 22     | 本人確認情報 | 本確審査NG補助書類不備理由          | idDocReviewNgSupportDocReason           |          |
+| 23     | 本人確認情報 | 本確審査NG補助書類不備理由（予備）  | idDocReviewNgSupportDocReasonAlt        |          |
+| 24     | 本人確認情報 | 本確審査NG補助書類種類2             | idDocReviewNgSupportDocType2            |          |
+| 25     | 本人確認情報 | 本確審査NG補助書類2不備理由         | idDocReviewNgSupportDoc2Reason          |          |
+| 26     | 本人確認情報 | 本確審査NG補助書類2不備理由（予備） | idDocReviewNgSupportDoc2ReasonAlt       |          |
+| 27     | 本人確認情報 | 本確審査NG追加補助書類種類          | idDocReviewNgAdditionalSupportDocType   |          |
+| 28     | 本人確認情報 | 本確審査NG追加補助書類不備理由      | idDocReviewNgAdditionalSupportDocReason |          |
+| 29     | 注文明細     | サービス                            | service                                 |          |
+| 30     | 注文明細     | 業務                                | business                                |          |
+| 31     | 注文明細     | 機器受取                            | equipmentReceipt                        |          |
+| 32     | メタ情報     | page                                | 現在のページ番号                        |          |
+| 33     | メタ情報     | pageSize                            | 1ページあたりの件数                     |          |
+| 34     | メタ情報     | totalPages                          | 全ページ数                              |          |
+| 35     | メタ情報     | totalItems                          | 全アイテム数                            |          |
+
+## レスポンス情報の例
 
 ```json
 {
