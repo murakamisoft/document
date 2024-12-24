@@ -1,0 +1,20 @@
+
+| **項目名**                            | **物理名**                               |
+| ------------------------------------- | ---------------------------------------- |
+| 本人確認書類登録ステータス            | idDocRegistrationStatus                  |
+| 本確審査NG証明書種類                  | idDocReviewNgCertType                    |
+| 本確審査NG証明書不備理由              | idDocReviewNgCertReason                  |
+| 本確審査NG証明書不備理由（予備）      | idDocReviewNgCertReasonAlt               |
+| 本確審査NG証明書種類2                 | idDocReviewNgCertType2                   |
+| 本確審査NG証明書2不備理由             | idDocReviewNgCert2Reason                 |
+| 本確審査NG証明書2不備理由（予備）     | idDocReviewNgCert2ReasonAlt              |
+| 本確審査NG追加証明書種類              | idDocReviewNgAdditionalCertType          |
+| 本確審査NG追加証明書不備理由          | idDocReviewNgAdditionalCertReason        |
+| 本確審査NG補助証明書種類              | idDocReviewNgSupportCertType             |
+| 本確審査NG補助証明書不備理由          | idDocReviewNgSupportCertReason           |
+| 本確審査NG補助証明書不備理由（予備）  | idDocReviewNgSupportCertReasonAlt        |
+| 本確審査NG補助証明書種類2             | idDocReviewNgSupportCertType2            |
+| 本確審査NG補助証明書2不備理由         | idDocReviewNgSupportCert2Reason          |
+| 本確審査NG補助証明書2不備理由（予備） | idDocReviewNgSupportCert2ReasonAlt       |
+| 本確審査NG追加補助証明書種類          | idDocReviewNgAdditionalSupportCertType   |
+| 本確審査NG追加補助証明書不備理由      | idDocReviewNgAdditionalSupportCertReason |
