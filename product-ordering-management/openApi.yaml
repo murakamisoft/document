@@ -6,9 +6,9 @@ servers:
   - url: "https://api.example.com"
 paths:
   /api/v1/order/{entrySheetNumber}:
-    get:
-      summary: 注文取得
-      operationId: getOrder
+    post:
+      summary: 注文取得（GETオーバーロード）
+      operationId: getOrderOverloaded
       parameters:
         - name: entrySheetNumber
           in: path
@@ -31,6 +31,23 @@ paths:
           schema:
             type: string
             maxLength: 3
+        - name: X-HTTP-Method-Override
+          in: header
+          description: 機密情報をGETメソッドで取得するリスクを避けるため、POSTメソッドを使用し、`X-HTTP-Method-Override` ヘッダーでGETメソッドとして処理。
+          required: true
+          schema:
+            type: string
+            enum: [GET]
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dummy:
+                  type: string
+                  example: "This is just to satisfy POST request body"
       responses:
         "200":
           description: 成功
@@ -83,46 +100,3 @@ paths:
                           idDocReviewNgAdditionalCertType:
                             type: string
                           idDocReviewNgAdditionalCertReason:
-                            type: string
-                          idDocReviewNgSupportDocType:
-                            type: string
-                          idDocReviewNgSupportDocReason:
-                            type: string
-                          idDocReviewNgSupportDocReasonAlt:
-                            type: string
-                          idDocReviewNgSupportDocType2:
-                            type: string
-                          idDocReviewNgSupportDoc2Reason:
-                            type: string
-                          idDocReviewNgSupportDoc2ReasonAlt:
-                            type: string
-                          idDocReviewNgAdditionalSupportDocType:
-                            type: string
-                          idDocReviewNgAdditionalSupportDocReason:
-                            type: string
-                      orderItems:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            service:
-                              type: string
-                            business:
-                              type: string
-                            equipmentReceipt:
-                              type: string
-                  meta:
-                    type: object
-                    properties:
-                      page:
-                        type: string
-                      pageSize:
-                        type: string
-                      totalPages:
-                        type: integer
-                      totalItems:
-                        type: integer
-        "400":
-          description: リクエストエラー
-        "404":
-          description: 注文が見つかりません
