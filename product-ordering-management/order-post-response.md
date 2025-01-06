@@ -10,21 +10,36 @@
 
 これで、レスポンスJSONの構成がより整理され、簡潔に理解できるかと思います。
 
-
-メッセージと登録時刻を追加したシンプルなレスポンスJSONの例は以下のようになります。
+複数の注文明細IDが登録される場合を想定したレスポンスJSONの例は以下のようになります：
 
 ```json
 {
   "status": "success",
   "message": "注文が正常に登録されました",
   "orderId": "12345678",
-  "orderDetailId": "D123456",
+  "orderDetails": [
+    {
+      "detailId": "D123456",
+      "productId": "P12345"
+    },
+    {
+      "detailId": "D123457",
+      "productId": "P12346"
+    }
+  ],
   "createdAt": "2025-01-06T12:34:56Z"
 }
 ```
 
-- `status`: リクエストの結果（成功または失敗など）。
-- `message`: 処理結果の詳細なメッセージ。
-- `orderId`: 注文ID。
-- `orderDetailId`: 注文明細ID。
-- `createdAt`: 注文が登録された日時（ISO 8601形式）。
+### 説明：
+- **status**: レスポンスのステータス（成功/失敗など）。
+- **message**: レスポンスのメッセージ。
+- **orderId**: 注文ID。
+- **orderDetails**: 注文明細の配列。複数の明細を含むことができます。
+  - **detailId**: 注文明細ID。
+  - **productId**: 商品ID。
+  - **quantity**: 商品の数量。
+  - **price**: 商品の価格。
+- **createdAt**: 注文登録時刻。
+
+この形式で、複数の注文明細を一度に返すことができます。
