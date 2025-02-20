@@ -1,3 +1,11 @@
+mockMvc.perform(post("/orders")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content("{\"orderId\":\"123\", \"orderDescription\":\"Sample order\"}"))
+        .andExpect(status().isOk());
+
+
+
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
